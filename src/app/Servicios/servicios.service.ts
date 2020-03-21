@@ -42,7 +42,7 @@ export class ServiciosService {
     }
   }
 
-  addPerson(strNombre: string, strTelefono: string, strEmail: string,strNotas: string) {
+  addPerson(strNombre: string, strTelefono: string, strEmail: string,strNotas: string, dateFecha : Date) {
     this.blnNext = false;
     (strNombre) ? this.fnError() : this.fnError('Error: Rellene el campo nombre');
     (strTelefono) ? (this.regexptelefono.test(strTelefono)) ? this.fnError : this.fnError('Error: El campo telefono solo contiene numeros') : this.fnError('Error: Rellene el campo telefono');
@@ -58,12 +58,14 @@ export class ServiciosService {
       strTelefono,
       strEmail,
       strNotas,
-      strSexo
+      strSexo,
+      dateFecha,
     };
     this.presentAlert();
     this.arrPersonas.push(jsnPersona);
     this.contactos();
     }
+    console.log(this.arrPersonas);
   }
 
   async presentAlert(){

@@ -1,3 +1,24 @@
-<p>
-  primer works!
-</p>
+<div  class="centrar">
+    <div *ngIf="!dataServicio.contact">
+      <h2>No se han añadido contactos</h2>
+    </div>
+    <div *ngIf="dataServicio.contact">
+      <h2>Mis contactos</h2>
+      <ion-item >
+        <ion-label>Ver notas</ion-label>
+        <ion-toggle slot="end" color="light" (ionChange)="dataServicio.showNote()"></ion-toggle>
+      </ion-item>
+      <ion-card *ngFor = "let data of dataServicio.arrPersonas" [ngClass]="{'blue':data.strSexo,'pink': !data.strSexo}">
+        <ion-card-header>
+          <ion-card-subtitle><p>{{data.strTelefono}}</p></ion-card-subtitle>
+          <ion-card-subtitle>Nacido en {{data.dateFecha|date}}</ion-card-subtitle>
+          <ion-card-title>{{data.strNombre}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{data.strEmail}}</ion-card-content>
+        <ion-item>
+          <ion-card-content id="notas" *ngIf="dataServicio.showNotas" slot="start">{{data.strNotas}}</ion-card-content>
+          <ion-button color="danger" slot="end" (click)="dataServicio.presentAlertConfirm(this.data,this.data.strNombre)"><ion-icon name="close"></ion-icon></ion-button>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>

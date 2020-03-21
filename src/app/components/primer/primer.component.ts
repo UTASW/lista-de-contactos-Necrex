@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../../servicios/servicios.service';
+
 
 @Component({
   selector: 'app-primer',
@@ -7,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrimerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataServicio: ServiciosService) { }
 
-  ngOnInit() {}
+  ngOnInit() {    
+    this.dataServicio.arrPersonas;
+  }
 
 }

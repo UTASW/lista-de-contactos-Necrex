@@ -43,12 +43,13 @@
     </ion-item>
   </ion-radio-group>
   <div id="container">
-    <ion-button (click)=" dataServicio.sex(); dataServicio.addPerson(nombre.value,telefono.value,email.value,fecha.value,notas.value);">
+    <ion-button (click)=" dataServicio.sex(); dataServicio.addPerson(nombre.value,telefono.value,email.value,notas.value,fecha.value);">
       <ion-icon name="add-circle-outline"></ion-icon>
     </ion-button>
   </div>
 
-  <div  class="centrar">
+  <app-primer></app-primer>
+  <!-- <div  class="centrar">
     <div *ngIf="!dataServicio.contact">
       <h2>No se han añadido contactos</h2>
     </div>
@@ -70,6 +71,6 @@
         </ion-item>
       </ion-card>
     </div>
-  </div>
+  </div> -->
 </ion-content>
 
