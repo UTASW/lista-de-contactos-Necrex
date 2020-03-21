@@ -23,7 +23,7 @@
   </ion-item>
   <ion-item>
     <ion-label  position="floating"> Fecha de nacimiento: MM DD YY</ion-label>
-    <ion-datetime displayFormat="DD/MMM/YYYY" placeholder="Select Date"></ion-datetime>
+    <ion-datetime #fecha displayFormat="DD/MMM/YYYY" ></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Notas</ion-label>
@@ -31,7 +31,7 @@
   </ion-item>
 
 
-  <ion-radio-group (ionChange)="event1($event)" value="h">
+  <ion-radio-group (ionChange)="dataServicio.event1($event)" value="h">
     <ion-list-header><h2>Sexo</h2></ion-list-header>
     <ion-item lines="none">
       <ion-label>Hombre</ion-label>
@@ -43,30 +43,30 @@
     </ion-item>
   </ion-radio-group>
   <div id="container">
-    <ion-button (click)=" sex(); addPerson(nombre.value,telefono.value,email.value,notas.value);">
+    <ion-button (click)=" dataServicio.sex(); dataServicio.addPerson(nombre.value,telefono.value,email.value,fecha.value,notas.value);">
       <ion-icon name="add-circle-outline"></ion-icon>
     </ion-button>
   </div>
 
   <div  class="centrar">
-    <div *ngIf="!contact">
+    <div *ngIf="!dataServicio.contact">
       <h2>No se han añadido contactos</h2>
     </div>
-    <div *ngIf="contact">
+    <div *ngIf="dataServicio.contact">
       <h2>Mis contactos</h2>
       <ion-item >
         <ion-label>Ver notas</ion-label>
-        <ion-toggle slot="end" color="light" (ionChange)="showNote()"></ion-toggle>
+        <ion-toggle slot="end" color="light" (ionChange)="dataServicio.showNote()"></ion-toggle>
       </ion-item>
-      <ion-card *ngFor = "let data of arrPersonas" [ngClass]="{'blue':data.strSexo,'pink': !data.strSexo}">
+      <ion-card *ngFor = "let data of dataServicio.arrPersonas" [ngClass]="{'blue':data.strSexo,'pink': !data.strSexo}">
         <ion-card-header>
           <ion-card-subtitle><p>{{data.strTelefono}}</p></ion-card-subtitle>
           <ion-card-title>{{data.strNombre}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>{{data.strEmail}}</ion-card-content>
         <ion-item>
-          <ion-card-content id="notas" *ngIf="showNotas" slot="start">{{data.strNotas}}</ion-card-content>
-          <ion-button color="danger" slot="end" (click)="presentAlertConfirm(this.data,this.data.strNombre)"><ion-icon name="close"></ion-icon></ion-button>
+          <ion-card-content id="notas" *ngIf="dataServicio.showNotas" slot="start">{{data.strNotas}}</ion-card-content>
+          <ion-button color="danger" slot="end" (click)="dataServicio.presentAlertConfirm(this.data,this.data.strNombre)"><ion-icon name="close"></ion-icon></ion-button>
         </ion-item>
       </ion-card>
     </div>
